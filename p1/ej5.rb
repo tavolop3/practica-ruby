@@ -5,4 +5,3 @@ def reemplazar(cadena)
 end
 
 puts reemplazar("ejemplo {bloque} de codigo")
- 
