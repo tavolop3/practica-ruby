@@ -48,3 +48,5 @@ tiempo_en_palabras(Time.new(2023, 10, 21, 0, 58))
 # => "Casi es la 1"
 tiempo_en_palabras(Time.new(2023, 10, 21, 1, 0))
 # => "Es la 1 en punto"
+
+#capaz se pueda simplificar pero para lo que se busca en este ej esta bien
