@@ -6,4 +6,4 @@ entrada = [10, 9, 1, 2, 3, 5, 7, 8]
 
 # Dada entrada, invocá a ordenar utilizando los valores que contiene la variable
 
-p ordenar(*entrada) # <= Esto no funciona. Corregí esta invocación para que funcione.
+p ordenar(*entrada)

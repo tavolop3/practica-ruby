@@ -38,11 +38,16 @@ class Usuario
   def puede_modificar?(documento) end
 
   def puede_borrar?(documento) end
+
+  def to_s
+    "#{email} (#{self.class.name})"
+  end
 end
 
 class Lector < Usuario
   def puede_ver?(documento)
     documento.publico
+  end
 
   def puede_modificar?(_documento)
     false
@@ -51,6 +56,7 @@ class Lector < Usuario
   def puede_borrar?(_documento)
     false
   end
+
 end
 
 
@@ -79,3 +85,11 @@ class Administrador < Director
     true
   end
 end
+
+lector = Lector.new("elhector@example.org","contra1234")
+p lector.to_s
+# => "elhector@example.org (Lector)"
+
+administrador = Administrador.new("admin@example.org","eladminpass")
+p administrador.to_s
+# => "admin@example.org (Administrador)"
