@@ -73,10 +73,12 @@ module Countable
         @invocations_count ||= Hash.new(0) ## si no existe se crea el hash con defaults en 0
     end
 
-    def invoked?
+    def invoked?(method_name)
+        invoked(method_name).positive?
     end
 
-    def invoked
+    def invoked(method_name)
+        invocations_count[method_name]
     end
 end
 
