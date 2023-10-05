@@ -47,3 +47,61 @@ included es un gancho para include para agregarle lógica adicional cuando se in
 count_invocations_of(sym) encapsula el metodo, cuenta la invocacion y llama al metodo
 
 hay que usar un hash para asociar la cantidad de veces que se cuenta y el metodo llamado
+
+## explicacion 2 ##
+
+cada instancia cuenta las invocaciones suyas
+
+module Countable
+    module ClassMethods # mantener este nombre como convención
+        def count_invocations_of(method_name)
+            alias_method "orig_#{method_name}".to_sym , method_name 
+
+            define_method{method_name} do
+                invocations_count[method_name]++ # incrementa la cantidad de veces que se invoca
+                send("orig_#{method_name}".to_sym) # invoca el método original
+            end
+        end
+    end 
+
+    def self.included(base)
+        base.extend(ClassMethods)
+        end
+    end
+
+    def invocations_count
+        @invocations_count ||= Hash.new(0) ## si no existe se crea el hash con defaults en 0
+    end
+
+    def invoked?
+    end
+
+    def invoked
+    end
+end
+
+class Greeter
+    include Countable # Incluyo el Mixin
+    def hi
+        puts 'Hey!'
+    end
+    def bye
+    puts 'See you!'
+    end
+    # Indico que quiero llevar la cuenta de veces que se invoca el mé
+    todo #hi
+    count_invocations_of :hi
+    end
+    a = Greeter.new
+    b = Greeter.new
+    a.invoked? :hi
+    # => false
+    b.invoked? :hi
+    # => false
+    a.hi
+    # Imprime "Hey!"
+    a.invoked :hi
+    # => 1
+    b.invoked :hi
+    # => 0
+end
