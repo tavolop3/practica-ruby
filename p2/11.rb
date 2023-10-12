@@ -8,10 +8,21 @@ class GenericFactory
     end
 end
 
-class SpecificFactory < GenericFactory
+class ClaseEspecifica1 < GenericFactory
     def initialize
-        p "se inicializa specific factory"
+        p "se inicializa ce1"
     end
 end
 
-s = SpecificFactory.initialize
+class ClaseEspecifica2 < GenericFactory
+    attr_accessor :nombre, :apellido
+    def initialize(nombre:, apellido:) # espera un hash con las keys y un valor si o si, no podes pasarle solo apellido
+        @nombre = nombre
+        @apellido = apellido
+    end
+end
+
+s = ClaseEspecifica1.create
+p s
+otra = ClaseEspecifica2.create(nombre: "tavo",apellido: "lop")
+p otra
