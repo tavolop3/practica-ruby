@@ -1,0 +1,1 @@
+el comando gem se utiliza para administrar gemas a nivel de sistema, mientras que Bundler se enfoca en gestionar las dependencias de un proyecto específico. Bundler utiliza el comando gem en segundo plano para instalar las gemas especificadas en el Gemfile, pero proporciona un nivel adicional de control y gestión de dependencias a nivel de proyecto.
